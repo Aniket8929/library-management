@@ -1,9 +1,10 @@
-const { Authcontext } = require("@/context/authcontext");
-const { useContext } = require("react");
+import { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
 
-const useAuth = () => {
-  const context = useContext(Authcontext);
-  return context;
-};
-
-export default useAuth;
+export function useAuth() {
+  const context = useContext(AuthContext)
+  if (!context) {
+    throw new Error('useAuth must be used within AuthProvider')
+  }
+  return context
+}

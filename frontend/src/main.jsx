@@ -1,16 +1,21 @@
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { BrowserRouter } from "react-router-dom";
-import AuthProvider from "./context/authcontext";
-import { TooltipProvider } from "./components/ui/tooltip";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'sonner'
+import App from './App'
+import { AuthProvider } from './context/AuthContext'
+import { BookProvider } from './context/BookContext'
+import './index.css'
 
-createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AuthProvider>
-      <TooltipProvider>
-        <App />
-      </TooltipProvider>
-    </AuthProvider>
-  </BrowserRouter>,
-);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <BookProvider>
+          <App />
+          <Toaster position="top-right" richColors />
+        </BookProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
+)
